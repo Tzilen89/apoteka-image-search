@@ -15,7 +15,6 @@ function App() {
           onChange={e => setCurrentSearch(e.target.value)}
           placeholder="Search for images..."
         />
-        <button onClick={() => setCurrentSearch(currentSearch)}>Search</button>
       </div>
       
       <ImageGridComponent searchTerm={currentSearch} />

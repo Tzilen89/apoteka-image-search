@@ -7,6 +7,10 @@ export const getFlickrImages = async (searchTerm: string = '', perPage: number) 
   const response = await fetch(endpoint);
   const data = await response.json();
 
+  if (!searchTerm.trim()) {
+    return [];
+  }
+  
   return data.photos.photo.map((photo: any) => {
     return {
       url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
