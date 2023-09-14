@@ -4,6 +4,7 @@ import ImageGridComponent from './components/ImageGridComponent';
 
 function App() {
   const [currentSearch, setCurrentSearch] = useState<string>('');
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
     <div className="App">
@@ -17,7 +18,12 @@ function App() {
         />
       </div>
       
-      <ImageGridComponent searchTerm={currentSearch} />
+      <ImageGridComponent searchTerm={currentSearch} onSelect={setSelectedImage}/>
+      {selectedImage && (
+        <div className="large-image-view">
+          <img src={selectedImage} alt="Selected" onClick={() => setSelectedImage(null)} />
+        </div>
+      )}
     </div>
   );
 };

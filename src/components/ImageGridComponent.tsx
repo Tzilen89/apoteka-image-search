@@ -8,9 +8,10 @@ type Image = {
 
 interface ImageGridProps {
   searchTerm: string;
+  onSelect: (imageUrl: string) => void;
 }
 
-const ImageGridComponent: React.FC<ImageGridProps> = ({ searchTerm }) => {
+const ImageGridComponent: React.FC<ImageGridProps> = ({ searchTerm, onSelect }) => {
   const [images, setImages] = useState<Image[]>([]);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const ImageGridComponent: React.FC<ImageGridProps> = ({ searchTerm }) => {
     <div className="image-grid">
       {images.map((image, index) => (
         <div key={index} className="image-container">
-          <img src={image.url}/>
+          <img src={image.url} onClick={() => onSelect(image.url)}/>
         </div>
       ))}
     </div>
