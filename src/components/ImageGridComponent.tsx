@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getFlickrImages } from './FlickrAPI';
 
 type Image = {
@@ -6,17 +6,21 @@ type Image = {
   title: string;
 };
 
-const ImageGridComponent: React.FC = () => {
+interface ImageGridProps {
+  searchTerm: string;
+}
+
+const ImageGridComponent: React.FC<ImageGridProps> = ({ searchTerm }) => {
   const [images, setImages] = useState<Image[]>([]);
 
-  useState(() => {
+  useEffect(() => {
     const fetchImages = async () => {
-      const fetchedImages = await getFlickrImages('test', 15);
+      const fetchedImages = await getFlickrImages(searchTerm, 15);
       setImages(fetchedImages);
     };
 
     fetchImages();
-  }, );
+  }, [searchTerm]);
 
   return (
     <div className="image-grid">
