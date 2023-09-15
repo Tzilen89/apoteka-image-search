@@ -16,7 +16,7 @@ const ImageGridComponent: React.FC<ImageGridProps> = ({ searchTerm, onSelect }) 
 
   useEffect(() => {
     const fetchImages = async () => {
-      const fetchedImages = await getFlickrImages(searchTerm, 15);
+      const fetchedImages = await getFlickrImages(searchTerm, 27);
       setImages(fetchedImages);
     };
 

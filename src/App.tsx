@@ -20,8 +20,8 @@ function App() {
       
       <ImageGridComponent searchTerm={currentSearch} onSelect={setSelectedImage}/>
       {selectedImage && (
-        <div className="large-image-view">
-          <img src={selectedImage} alt="Selected" onClick={() => setSelectedImage(null)} />
+        <div className="large-image-view" onClick={() => setSelectedImage(null)}>
+          <img src={selectedImage} alt="Selected" />
         </div>
       )}
     </div>
