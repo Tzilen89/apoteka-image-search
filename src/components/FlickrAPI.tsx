@@ -4,16 +4,29 @@ const API_URL = 'https://www.flickr.com/services/rest/';
 export const getFlickrImages = async (searchTerm: string = '', perPage: number) => {
   const endpoint = `${API_URL}?method=flickr.photos.search&api_key=${API_KEY}&text=${searchTerm}&format=json&nojsoncallback=1&per_page=${perPage}`;
 
-  const response = await fetch(endpoint);
-  const data = await response.json();
-
   if (!searchTerm.trim()) {
     return [];
   }
-  
-  return data.photos.photo.map((photo: any) => {
-    return {
-      url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
-    };
-  });
+
+  try {
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+
+    if (data.stat !== 'ok') {
+      throw new Error(data.message || 'Failed to fetch data from Flickr');
+      
+    }
+
+    return data.photos.photo.map((photo: any) => {
+      return {
+        url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
+      };
+    });
+  } catch (error) {
+    throw error;
+  }
 };

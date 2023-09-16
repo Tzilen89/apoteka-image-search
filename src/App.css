@@ -44,3 +44,9 @@ h1 {
   height: 600px;
   object-fit: cover;
 }
+
+.error-message {
+  color: red;
+  margin: 20px 0;
+  text-align: center;
+}
