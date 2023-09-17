@@ -5,7 +5,7 @@ export const getFlickrImages = async (searchTerm: string = '', perPage: number) 
   const endpoint = `${API_URL}?method=flickr.photos.search&api_key=${API_KEY}&text=${searchTerm}&format=json&nojsoncallback=1&per_page=${perPage}`;
 
   if (!searchTerm.trim()) {
-    return [];
+    return Promise.resolve([]);
   }
 
   try {
@@ -23,7 +23,8 @@ export const getFlickrImages = async (searchTerm: string = '', perPage: number) 
 
     return data.photos.photo.map((photo: any) => {
       return {
-        url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
+        url: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`,
+        title: photo.title
       };
     });
   } catch (error) {

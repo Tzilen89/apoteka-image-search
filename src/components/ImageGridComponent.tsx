@@ -38,12 +38,12 @@ const ImageGridComponent: React.FC<ImageGridProps> = ({ searchTerm, onSelect }) 
 
   return (
     <div>
-      {loading && <div>loading..</div>}
+      {loading && <div>loading...</div>}
       {error && <div className="error-message">{error}</div>}
       <div className="image-grid">
         {images.map((image, index) => (
           <div key={index} className="image-container">
-            <img src={image.url} onClick={() => onSelect(image.url)} />
+            <img src={image.url} alt={image.title} onClick={() => onSelect(image.url)} />
           </div>
         ))}
         {loading && Array(27).fill(0).map((_, index) => (
