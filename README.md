@@ -1,3 +1,10 @@
+# To apoteka, when reading through the code
+The app has been updated a bit throughout the weekend. If you want to see the bare minimum of what you asked for, go back to the last commit on friday (where styling was added): https://github.com/Tzilen89/apoteka-image-search/tree/def2666a70fd19689bd86080fb1003c54db05350 
+This point took me roughly 3 hours.
+
+I've sat on a train both saturday and sunday during the weekend, and had some hours to improve on the code a bit. Feel free to look through the later commits as well.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
